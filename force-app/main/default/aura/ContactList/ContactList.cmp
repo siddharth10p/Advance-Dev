@@ -1,0 +1,24 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="ContactListController">
+    <!-- Handler to call function when page is loaded initially -->
+    <aura:handler name="init" action="{!c.getContactsList}" value="{!this}" />
+    <!-- List of contacts stored in attribute -->
+    <aura:attribute name="contactList" type="List" />
+    <!-- Lightning card to show contacts -->
+        <lightning:card title="Contacts">
+        <!-- Body of lightning card starts here -->
+        <p class="slds-p-horizontal_small">
+            <!-- Aura iteration to iterate list, similar to apex:repeat -->
+            <aura:iteration items="{!v.contactList}" var="contact">
+                <!-- child component-->
+                    <c:ContactDetails contact="{!contact}"></c:ContactDetails>
+                <!-- Line break between two records -->
+                <br />
+            </aura:iteration>
+        </p>
+        <!-- Lightning card actions -->
+        <aura:set attribute="actions">
+            <!-- New button added -->
+            <lightning:button label="New" onclick="{!c.newContact}" />
+        </aura:set>
+    </lightning:card>
+</aura:component>

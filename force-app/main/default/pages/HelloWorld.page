@@ -1,0 +1,15 @@
+<apex:page standardController="Account">
+    <apex:form >
+        <apex:pageBlock title="Hi {!$User.FirstName}">
+            <apex:pageBlockSection title="Quick Update to {!Account.name}" columns="3">
+                <apex:inputfield value="{!Account.industry}"/>
+                <apex:inputfield value="{!Account.annualRevenue}"/>
+                <apex:commandButton value="Update Account" action="{!save}"/>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlock >
+                <apex:detail relatedList="false"/>
+            </apex:pageBlock>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

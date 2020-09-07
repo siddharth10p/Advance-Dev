@@ -1,0 +1,38 @@
+<aura:component controller="ContactListController">
+    <aura:attribute name="contact" type="Contact" />
+    <aura:attribute name="isEdit" type="Boolean" default="false"/>
+
+    <div style="border: 1px solid grey; border-radius:5px;">
+        <lightning:card>
+                <aura:set attribute="actions">
+                    <aura:if isTrue="{!!v.isEdit}">
+
+                    </aura:if>
+                    <lightning:button variant="brand-outline" label="Edit" variant="neutral" title="Edit" disabled={!v.isEdit} onclick="{! c.handleEditClick }" />
+                    <lightning:button variant="brand-outline" label="Save" variant="brand" title="Save" disabled={!!v.isEdit} onclick="{! c.handleSaveClick }" />
+                </aura:set>
+                <p class="slds-p-horizontal_small">
+                    <aura:if isTrue="{!!v.isEdit}">
+                    <!-- if edit mode is false then display readonly fields-->
+                    <lightning:recordViewForm recordId="{! v.contact.Id}" objectApiName="Contact">
+                            <!-- outputfield used to output the record field data inside recordViewForm -->
+                            <lightning:outputField fieldName="FirstName" />
+                            <lightning:outputField fieldName="LastName" />
+                            <lightning:outputField fieldName="Email" />
+                            <lightning:outputField fieldName="Phone" />
+                    </lightning:recordViewForm>
+    
+                    <!-- else display editable fields-->
+                        <aura:set attribute="else">
+                            <lightning:recordEditForm aura:id="editForm" recordId="{! v.contact.Id}" objectApiName="Contact">
+                                <lightning:inputField fieldName="FirstName" />
+                                <lightning:inputField fieldName="LastName" />
+                                <lightning:inputField fieldName="Email" />
+                                <lightning:inputField fieldName="Phone" />
+                            </lightning:recordEditForm>
+                        </aura:set>
+                    </aura:if>
+                </p>
+        </lightning:card>
+    </div>
+</aura:component>	

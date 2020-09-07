@@ -1,0 +1,47 @@
+<template>
+    <template if:true={contact}>
+        <lightning-card  variant="Narrow">
+            <div class="slds-box">
+                <div class="buttons">
+                    <template if:false={editMode}>
+                        <lightning-button-icon icon-name="utility:edit" variant="border-filled" alternative-text="Edit" title="Edit" onclick={handleEdit}></lightning-button-icon>
+                    </template>
+                    <template if:true={editMode}>
+                        <lightning-button-icon icon-name="utility:save" variant="border-filled" alternative-text="Save" title="Save" onclick={handleSave}></lightning-button-icon>
+                    </template>
+                </div>
+                <div class="record-form slds-m-top_small">
+                    <template if:false={editMode}>
+                        <lightning-record-view-form
+                        record-id={contact.Id}
+                        object-api-name="Contact">
+                                <lightning-output-field field-name="FirstName">
+                                </lightning-output-field>
+                                <lightning-output-field field-name="LastName">
+                                </lightning-output-field>
+                                <lightning-output-field field-name="Email">
+                                </lightning-output-field>
+                                <lightning-output-field field-name="Phone">
+                                </lightning-output-field>
+                        </lightning-record-view-form>
+                    </template>
+                    <template if:true={editMode}>
+                        <lightning-record-edit-form
+                        record-id={contact.Id}
+                        object-api-name="Contact">
+                                <lightning-button-icon  icon-name="utility:edit" variant="border-filled" alternative-text="Show More" slot="actions"></lightning-button-icon>
+                                <lightning-input-field field-name="FirstName" title="FirstName" onchange={handleChange}>
+                                </lightning-input-field>
+                                <lightning-input-field field-name="LastName" title="LastName" onchange={handleChange}>
+                                </lightning-input-field>
+                                <lightning-input-field field-name="Email" title="Email" onchange={handleChange}>
+                                </lightning-input-field>
+                                <lightning-input-field field-name="Phone" title="Phone" onchange={handleChange}>
+                                </lightning-input-field>
+                        </lightning-record-edit-form>
+                    </template>
+                </div>
+            </div>
+        </lightning-card>
+    </template>
+</template>

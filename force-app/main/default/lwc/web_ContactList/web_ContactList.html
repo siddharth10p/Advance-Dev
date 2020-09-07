@@ -1,0 +1,5 @@
+<template>
+    <template for:each={contactList} for:item="contact">
+        <c-contact-record key={contact.Id} contact={contact}></c-contact-record>
+    </template>
+</template>

@@ -1,0 +1,5 @@
+.buttons {
+    position: relative;
+    z-index: 99;
+    float: right;
+}
